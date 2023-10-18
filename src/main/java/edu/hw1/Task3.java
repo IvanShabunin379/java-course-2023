@@ -1,6 +1,7 @@
 package edu.hw1;
 
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 
 public final class Task3 {
     private Task3() {
@@ -11,11 +12,9 @@ public final class Task3 {
             return false;
         }
 
-        int min1 = Arrays.stream(arr1).min().getAsInt();
-        int min2 = Arrays.stream(arr2).min().getAsInt();
-        int max1 = Arrays.stream(arr1).max().getAsInt();
-        int max2 = Arrays.stream(arr2).max().getAsInt();
+        IntSummaryStatistics stats1 = Arrays.stream(arr1).summaryStatistics();
+        IntSummaryStatistics stats2 = Arrays.stream(arr2).summaryStatistics();
 
-        return (min1 > min2) && (max1 < max2);
+        return (stats1.getMin() > stats2.getMin()) && (stats1.getMax() < stats2.getMax());
     }
 }

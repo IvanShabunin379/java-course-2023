@@ -1,13 +1,17 @@
 package edu.hw1;
 
-public class Task5_SpecialPalindrome {
+public final class Task5 {
+    private Task5() {
+    }
+
     public static boolean isPalindromeDescendant(int number) {
         if (isPalindrome(number)) {
             return true;
         }
 
+        final int MAX_DIGIT = 9;
         int currentDescendant = calculateDescendant(number);
-        while (currentDescendant > 9) {
+        while (currentDescendant > MAX_DIGIT) {
             if (isPalindrome(currentDescendant)) {
                 return true;
             }
@@ -28,10 +32,12 @@ public class Task5_SpecialPalindrome {
 
     private static int reverse(int number) {
         int result = 0;
+        int copyOfNumber = number;
 
-        while (number != 0) {
-            result = result * 10 + number % 10;
-            number /= 10;
+        final int RADIX = 10;
+        while (copyOfNumber != 0) {
+            result = result * RADIX + copyOfNumber % RADIX;
+            copyOfNumber /= RADIX;
         }
 
         return result;

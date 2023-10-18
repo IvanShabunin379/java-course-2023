@@ -2,7 +2,10 @@ package edu.hw1;
 
 import java.util.Arrays;
 
-public class Task3_NestingArray {
+public final class Task3 {
+    private Task3() {
+    }
+
     public static boolean isNestable(int[] arr1, int[] arr2) {
         if (arr1.length == 0 || arr2.length == 0) {
             return false;
@@ -13,6 +16,6 @@ public class Task3_NestingArray {
         int max1 = Arrays.stream(arr1).max().getAsInt();
         int max2 = Arrays.stream(arr2).max().getAsInt();
 
-        return min1 > min2 && max1 < max2;
+        return (min1 > min2) && (max1 < max2);
     }
 }

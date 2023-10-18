@@ -1,9 +1,14 @@
 package edu.hw1;
 
-public class Task7_CyclicBitShift {
+public final class Task7 {
+    private static final String INVALID_N_MESSAGE = "Invalid n. Expected positive n.";
+
+    private Task7() {
+    }
+
     public static int rotateLeft(int n, int shift) throws IllegalArgumentException {
         if (n <= 0) {
-            throw new IllegalArgumentException("Invalid n. Expected positive n.");
+            throw new IllegalArgumentException(INVALID_N_MESSAGE);
         }
 
         String resultInBinary = Integer.toBinaryString(n);
@@ -17,7 +22,7 @@ public class Task7_CyclicBitShift {
 
     public static int rotateRight(int n, int shift) {
         if (n <= 0) {
-            throw new IllegalArgumentException("Invalid n. Expected positive n.");
+            throw new IllegalArgumentException(INVALID_N_MESSAGE);
         }
 
         String resultInBinary = Integer.toBinaryString(n);

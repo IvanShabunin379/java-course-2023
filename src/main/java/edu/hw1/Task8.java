@@ -1,21 +1,25 @@
 package edu.hw1;
 
-public class Task8_KnightsOnBoard {
+public final class Task8 {
     private static final int BOARD_LEN = 8;
+    private static final String INVALID_BOARD_SIZE_MESSAGE = "Invalid board size. Expected 8x8 board.";
+
+    private Task8() {
+    }
 
     public static boolean knightBoardCapture(int[][] board) throws IllegalArgumentException {
         // Проверка на то, что размер переданного двумерного массива 8х8
         if (board.length != BOARD_LEN) {
-            throw new IllegalArgumentException("Invalid board size. Expected 8x8 board.");
+            throw new IllegalArgumentException(INVALID_BOARD_SIZE_MESSAGE);
         }
         for (int[] row : board) {
             if (row.length != BOARD_LEN) {
-                throw new IllegalArgumentException("Invalid board size. Expected 8x8 board.");
+                throw new IllegalArgumentException(INVALID_BOARD_SIZE_MESSAGE);
             }
         }
 
         // Проверка всех клеток. Восьмая горизонталь автоматически проверится во время проверки 6-й и 7-й
-        for (int i = 1; i <= 7; ++i) {
+        for (int i = 1; i < BOARD_LEN; ++i) {
             if (!checkKnightHorizontal(board, i)) {
                 return false;
             }
@@ -32,27 +36,27 @@ public class Task8_KnightsOnBoard {
             if (board[indHor][0] == 1 && (board[indHor + 2][1] == 1 || board[indHor + 1][2] == 1)) {
                 return false;
             }
-            if (board[indHor][1] == 1 &&
-                (board[indHor + 2][0] == 1 || board[indHor + 2][2] == 1 || board[indHor + 1][3] == 1)) {
+            if (board[indHor][1] == 1
+                && (board[indHor + 2][0] == 1 || board[indHor + 2][2] == 1 || board[indHor + 1][3] == 1)) {
                 return false;
             }
 
             // Проверка четырех центральных клеток
             for (int j = 2; j < BOARD_LEN - 2; ++j) {
-                if (board[indHor][j] == 1 && (board[indHor + 2][j - 1] == 1 || board[indHor + 2][j + 1] == 1 ||
-                    board[indHor + 1][j - 2] == 1 || board[indHor + 1][j + 2] == 1)) {
+                if (board[indHor][j] == 1 && (board[indHor + 2][j - 1] == 1 || board[indHor + 2][j + 1] == 1
+                    || board[indHor + 1][j - 2] == 1 || board[indHor + 1][j + 2] == 1)) {
                     return false;
                 }
             }
 
             // Проверка двух крайних правых клеток
-            if (board[indHor][BOARD_LEN - 2] == 1 &&
-                (board[indHor + 2][BOARD_LEN - 3] == 1 || board[indHor + 2][BOARD_LEN - 1] == 1
-                    || board[indHor + 1][BOARD_LEN - 4] == 1)) {
+            if (board[indHor][BOARD_LEN - 2] == 1
+                && (board[indHor + 2][BOARD_LEN - 3] == 1 || board[indHor + 2][BOARD_LEN - 1] == 1
+                || board[indHor + 1][BOARD_LEN - 4] == 1)) {
                 return false;
             }
-            if (board[indHor][BOARD_LEN - 1] == 1 &&
-                (board[indHor + 2][BOARD_LEN - 2] == 1 || board[indHor + 1][BOARD_LEN - 3] == 1)) {
+            if (board[indHor][BOARD_LEN - 1] == 1
+                && (board[indHor + 2][BOARD_LEN - 2] == 1 || board[indHor + 1][BOARD_LEN - 3] == 1)) {
                 return false;
             }
         } else {

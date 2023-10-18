@@ -1,6 +1,9 @@
 package edu.hw1;
 
-public class Task2_CountDigits {
+public final class Task2 {
+    private Task2() {
+    }
+
     public static int countDigits(int number) {
         if (number == 0) {
             return 1;
@@ -8,9 +11,11 @@ public class Task2_CountDigits {
 
         int count = 0;
 
-        while (number != 0) {
+        int copyOfNumber = number;
+        final int RADIX = 10;
+        while (copyOfNumber != 0) {
             ++count;
-            number /= 10;
+            copyOfNumber /= RADIX;
         }
 
         return count;

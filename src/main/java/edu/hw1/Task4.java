@@ -2,7 +2,10 @@ package edu.hw1;
 
 import org.jetbrains.annotations.NotNull;
 
-public class Task4_BrokenString {
+public final class Task4 {
+    private Task4() {
+    }
+
     public static @NotNull String fixString(@NotNull String broken) {
         if (broken.length() < 2) {
             return broken;

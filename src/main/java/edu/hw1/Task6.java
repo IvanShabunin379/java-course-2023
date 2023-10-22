@@ -3,18 +3,16 @@ package edu.hw1;
 import java.util.Arrays;
 
 public final class Task6 {
-    private static final int KAPREKAR_CONST = 6174;
+    public static final int KAPREKAR_CONST = 6174;
+    private static final int RADIX = 10;
+    private static final int COUNT_DIGITS_IN_NUMBER = 4;
+    private static final int MIN_FOUR_DIGIT_NUMBER = 1000;
+    private static final int MAX_FOUR_DIGIT_NUMBER = 9999;
 
     private Task6() {
     }
 
-    public static int getKaprekarConst() {
-        return KAPREKAR_CONST;
-    }
-
     public static int countK(int number) {
-        final int MIN_FOUR_DIGIT_NUMBER = 1000;
-        final int MAX_FOUR_DIGIT_NUMBER = 9999;
         if ((number <= MIN_FOUR_DIGIT_NUMBER) || (number >= MAX_FOUR_DIGIT_NUMBER) || allDigitsAreEqual(number)) {
             return -1;
         }
@@ -38,11 +36,6 @@ public final class Task6 {
             return number;
         }
 
-        final int COUNT_DIGITS_IN_NUMBER = 4;
-        final int RADIX = 10;
-        final int RADIX_SQR = 100;
-        final int RADIX_CUBE = 1000;
-
         int[] digits = new int[COUNT_DIGITS_IN_NUMBER];
 
         int copyOfNumber = number;
@@ -52,6 +45,9 @@ public final class Task6 {
         }
 
         Arrays.sort(digits);
+
+        final int RADIX_SQR = 100;
+        final int RADIX_CUBE = 1000;
 
         int ascending =
             digits[0] * RADIX_CUBE + digits[1] * RADIX_SQR + digits[2] * RADIX + digits[COUNT_DIGITS_IN_NUMBER - 1];
@@ -63,7 +59,6 @@ public final class Task6 {
 
     private static boolean allDigitsAreEqual(int number) {
         int copyOfNumber = number;
-        final int RADIX = 10;
 
         int currentDigit = copyOfNumber % RADIX;
         while (copyOfNumber >= RADIX) {

@@ -1,6 +1,8 @@
 package edu.hw1;
 
 public final class Task2 {
+    private final static int RADIX = 10;
+
     private Task2() {
     }
 
@@ -12,7 +14,6 @@ public final class Task2 {
         int count = 0;
 
         int copyOfNumber = number;
-        final int RADIX = 10;
         while (copyOfNumber != 0) {
             ++count;
             copyOfNumber /= RADIX;

@@ -14,7 +14,7 @@ public class Task6Test {
 
     @Test
     public void kaprekarConstantShouldReturnZero() {
-        assertThat(Task6.countK(Task6.getKaprekarConst())).isEqualTo(0);
+        assertThat(Task6.countK(Task6.KAPREKAR_CONST)).isEqualTo(0);
     }
 
     @Test

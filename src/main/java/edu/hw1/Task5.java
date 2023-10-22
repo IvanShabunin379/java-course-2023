@@ -1,6 +1,9 @@
 package edu.hw1;
 
 public final class Task5 {
+    private static final int RADIX = 10;
+    private static final int MAX_DIGIT = 9;
+
     private Task5() {
     }
 
@@ -9,7 +12,6 @@ public final class Task5 {
             return true;
         }
 
-        final int MAX_DIGIT = 9;
         int currentDescendant = calculateDescendant(number);
         while (currentDescendant > MAX_DIGIT) {
             if (isPalindrome(currentDescendant)) {
@@ -34,7 +36,6 @@ public final class Task5 {
         int result = 0;
         int copyOfNumber = number;
 
-        final int RADIX = 10;
         while (copyOfNumber != 0) {
             result = result * RADIX + copyOfNumber % RADIX;
             copyOfNumber /= RADIX;

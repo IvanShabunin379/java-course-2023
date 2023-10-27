@@ -1,7 +1,7 @@
 package edu.project1;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Random;
+import org.jetbrains.annotations.NotNull;
 
 public class GameDictionary implements Dictionary {
     static final String[] WORDS = {"hangman", "hello", "world", "exception", "dictionary"};

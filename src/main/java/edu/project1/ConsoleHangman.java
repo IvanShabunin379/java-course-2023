@@ -3,12 +3,15 @@ package edu.project1;
 import java.util.Scanner;
 
 public class ConsoleHangman {
+    private static final String INCORRECT_LENGTH_MSG =
+        "\"Hangman\" cannot be started because the hidden word has an incorrect length (< 2)!";
+
+    @SuppressWarnings("RegexpSinglelineJava")
     public void run() {
         Dictionary dictionary = new GameDictionary();
         String answer = dictionary.randomWord();
         if (answer.length() < 2) {
-            System.out.println("\"Hangman\" cannot be started because the hidden word has an incorrect length (< 2)!");
-            return;
+            throw new IllegalStateException(INCORRECT_LENGTH_MSG);
         }
 
         final int MAX_ATTEMPTS = 6;
@@ -41,6 +44,7 @@ public class ConsoleHangman {
         }
     }
 
+    @SuppressWarnings("RegexpSinglelineJava")
     private char getLetterFromUser() {
         Scanner keyboard = new Scanner(System.in);
         String input;
@@ -58,6 +62,7 @@ public class ConsoleHangman {
         return session.guess(guess);
     }
 
+    @SuppressWarnings("RegexpSinglelineJava")
     private void printState(GuessResult guessResult) {
         System.out.println(guessResult.message());
         System.out.println();

@@ -26,13 +26,9 @@ public class ConsoleHangman {
         while (!gameOver) {
             System.out.println("Guess a letter (or enter '0' to give up):");
             char guess = getLetterFromUser();
-            if (guess == '0') {
-                System.out.println(session.giveUp().message());
-                return;
-            }
 
             GuessResult guessResult = tryGuess(session, guess);
-            printState(guessResult);
+            guessResult.printMessageAndState();
             System.out.println();
 
             gameOver = (guessResult instanceof GuessResult.Win) || (guessResult instanceof GuessResult.Defeat);
@@ -59,13 +55,6 @@ public class ConsoleHangman {
     }
 
     private GuessResult tryGuess(Session session, char guess) {
-        return session.guess(guess);
-    }
-
-    @SuppressWarnings("RegexpSinglelineJava")
-    private void printState(GuessResult guessResult) {
-        System.out.println(guessResult.message());
-        System.out.println();
-        System.out.println("The word: " + String.valueOf(guessResult.state()));
+        return (guess != '0') ? session.guess(guess) : session.giveUp();
     }
 }

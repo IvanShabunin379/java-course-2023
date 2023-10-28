@@ -56,6 +56,6 @@ public class Session {
     }
 
     @NotNull GuessResult giveUp() {
-        return new GuessResult.Defeat(userAnswer, attempts, maxAttempts, "You gave up! The word was: " + answer + ".");
+        return new GuessResult.Defeat(userAnswer, attempts, maxAttempts, "You gave up!");
     }
 }

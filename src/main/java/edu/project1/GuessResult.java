@@ -11,6 +11,13 @@ public sealed interface GuessResult {
 
     @NotNull String message();
 
+    @SuppressWarnings("RegexpSinglelineJava")
+    default void printMessageAndState() {
+        System.out.println(message());
+        System.out.println();
+        System.out.println("The word: " + String.valueOf(state()));
+    }
+
     record Defeat(char[] state, int attempt, int maxAttempts, String message) implements GuessResult {
     }
 

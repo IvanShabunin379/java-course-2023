@@ -24,7 +24,12 @@ public final class PopularCommandExecutor {
                 connection.execute(command);
                 return;
             } catch (Exception ex) {
-                LOGGER.error("Attempt {} of {}: Failed to execute command due to error: {}", i + 1, maxAttempts, ex.getMessage());
+                LOGGER.error(
+                    "Attempt {} of {}: Failed to execute command due to error: {}",
+                    i + 1,
+                    maxAttempts,
+                    ex.getMessage()
+                );
                 if (ex instanceof ConnectionException) {
                     throw new ConnectionException("Failed to execute command due to connection error", ex);
                 }

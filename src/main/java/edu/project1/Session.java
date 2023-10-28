@@ -1,7 +1,7 @@
 package edu.project1;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
+import org.jetbrains.annotations.NotNull;
 
 public class Session {
     private final String answer;
@@ -22,6 +22,7 @@ public class Session {
         return answer;
     }
 
+    @SuppressWarnings("MultipleStringLiterals")
     @NotNull GuessResult guess(char guess) {
         boolean isSuccesessfulGuess = false;
 
@@ -55,6 +56,6 @@ public class Session {
     }
 
     @NotNull GuessResult giveUp() {
-        return new GuessResult.Defeat(userAnswer, attempts, maxAttempts, "You gave up! The word was: " + answer + ".");
+        return new GuessResult.Defeat(userAnswer, attempts, maxAttempts, "You gave up!");
     }
 }

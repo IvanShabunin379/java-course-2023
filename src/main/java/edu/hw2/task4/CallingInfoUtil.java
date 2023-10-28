@@ -1,6 +1,6 @@
 package edu.hw2.task4;
 
-public class CallingInfoUtil {
+public final class CallingInfoUtil {
     private CallingInfoUtil() {
     }
 

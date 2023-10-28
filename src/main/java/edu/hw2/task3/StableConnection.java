@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 public class StableConnection implements Connection {
     private static final Logger LOGGER = LogManager.getLogger();
 
+    @SuppressWarnings("RegexpSinglelineJava")
     @Override
     public void execute(String command) {
         System.out.println(command);

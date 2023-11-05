@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 
@@ -179,5 +180,21 @@ public final class AnimalListAnalyzer {
             .flatMap(Collection::stream)
             .max(Comparator.comparingInt(Animal::weight))
             .orElse(null);
+    }
+
+    // Задание 19.
+    // Животные, в записях о которых есть ошибки: вернуть имя и список ошибок -> Map<String, Set<ValidationError>>.
+    // Класс ValidationError и набор потенциальных проверок нужно придумать самостоятельно.
+    public static Map<String, Set<ValidationError>> findAnimalsWithValidationErrors(@NotNull List<Animal> animals) {
+        return animals.stream()
+            .collect(Collectors.toMap(Animal::name, AnimalValidator::findValidationErrors));
+    }
+
+    // Задание 20.
+    // Сделать результат предыдущего задания более читабельным: вернуть имя и названия полей с ошибками,
+    // объединенные в строку -> Map<String, String>
+    public static Map<String, String> findAnimalsWithValidationErrorsReadable(@NotNull List<Animal> animals) {
+        return animals.stream()
+            .collect(Collectors.toMap(Animal::name, AnimalValidator::findInvalidFields));
     }
 }

@@ -23,6 +23,7 @@ public final class AnimalValidationChecks {
 
     public static ValidationError checkAge(Animal.Type type, int age) {
         int maxValidAge = switch (type) {
+            case null -> 100;
             case CAT -> 40;
             case DOG -> 35;
             case BIRD -> 71;
@@ -35,6 +36,7 @@ public final class AnimalValidationChecks {
 
     public static ValidationError checkHeight(Animal.Type type, int height) {
         int maxValidHeight = switch (type) {
+            case null -> 2000;
             case CAT -> 50;
             case DOG -> 220;
             case BIRD -> 270;
@@ -42,19 +44,20 @@ public final class AnimalValidationChecks {
             case SPIDER -> 30;
         };
 
-        return (height >= 0 && height <= maxValidHeight) ? null :
-            new ValidationError("height", "The animal has invalid height.");
+        return (height >= 0 && height <= maxValidHeight) ? null
+            : new ValidationError("height", "The animal has invalid height.");
     }
 
     public static ValidationError checkWeight(Animal.Type type, double weight) {
         int maxValidWeight = switch (type) {
+            case null -> 2500;
             case CAT -> 21;
             case DOG, BIRD -> 130;
             case FISH -> 2300;
             case SPIDER -> 1;
         };
 
-        return (weight >= 0 && weight <= maxValidWeight) ? null :
-            new ValidationError("weight", "The animal has invalid weight.");
+        return (weight >= 0 && weight <= maxValidWeight) ? null
+            : new ValidationError("weight", "The animal has invalid weight.");
     }
 }

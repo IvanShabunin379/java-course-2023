@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.Set;
 
 public final class AnimalValidator {
+    private AnimalValidator() {
+    }
+
     public static Set<ValidationError> findValidationErrors(Animal animal) {
         Set<ValidationError> errors = new HashSet<>();
 
@@ -17,7 +20,7 @@ public final class AnimalValidator {
         return errors;
     }
 
-    private static void addErrorToErrorSet (Set<ValidationError> errors, ValidationError error) {
+    private static void addErrorToErrorSet(Set<ValidationError> errors, ValidationError error) {
         if (error != null) {
             errors.add(error);
         }

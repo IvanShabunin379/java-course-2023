@@ -89,7 +89,7 @@ public final class AnimalListAnalyzer {
 
     // Задача 8.
     // Самое тяжелое животное среди животных ниже k см -> Optional<Animal>
-    public static @NotNull Optional<Animal> findHeaviestAnimal(@NotNull List<Animal> animals, int k) {
+    public static @NotNull Optional<Animal> findHeaviestAnimalBelowK(@NotNull List<Animal> animals, int k) {
         return animals.stream()
             .filter(animal -> animal.height() < k)
             .max(Comparator.comparingInt(Animal::weight));
@@ -175,9 +175,10 @@ public final class AnimalListAnalyzer {
 
     // Задача 18.
     // Найти самую тяжелую рыбку в 2-х или более списках -> Animal
-    @SafeVarargs public static Animal findHeaviestAnimal(List<Animal>... animals) {
+    @SafeVarargs public static Animal findHeaviestFish(List<Animal>... animals) {
         return Arrays.stream(animals)
             .flatMap(Collection::stream)
+            .filter(animal -> animal.type().equals(Animal.Type.FISH))
             .max(Comparator.comparingInt(Animal::weight))
             .orElse(null);
     }
@@ -187,6 +188,7 @@ public final class AnimalListAnalyzer {
     // Класс ValidationError и набор потенциальных проверок нужно придумать самостоятельно.
     public static Map<String, Set<ValidationError>> findAnimalsWithValidationErrors(@NotNull List<Animal> animals) {
         return animals.stream()
+            .filter(animal -> !AnimalValidator.findValidationErrors(animal).isEmpty())
             .collect(Collectors.toMap(Animal::name, AnimalValidator::findValidationErrors));
     }
 
@@ -195,6 +197,7 @@ public final class AnimalListAnalyzer {
     // объединенные в строку -> Map<String, String>
     public static Map<String, String> findAnimalsWithValidationErrorsReadable(@NotNull List<Animal> animals) {
         return animals.stream()
+            .filter(animal -> !AnimalValidator.findValidationErrors(animal).isEmpty())
             .collect(Collectors.toMap(Animal::name, AnimalValidator::findInvalidFields));
     }
 }

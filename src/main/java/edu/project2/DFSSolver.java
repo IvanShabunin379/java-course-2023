@@ -1,12 +1,13 @@
 package edu.project2;
 
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class DFSSolver extends Solver {
     @Override
-    public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
+    public List<Coordinate> solve(@NotNull Maze maze, @NotNull Coordinate start, @NotNull Coordinate end) {
         visited = new boolean[maze.getHeight()][maze.getWidth()];
 
         List<Coordinate> path = new ArrayList<>();
@@ -16,7 +17,12 @@ public class DFSSolver extends Solver {
         return Collections.emptyList();
     }
 
-    private boolean explore(Maze maze, Coordinate start, Coordinate end, List<Coordinate> path) {
+    private boolean explore(
+        @NotNull Maze maze,
+        @NotNull Coordinate start,
+        @NotNull Coordinate end,
+        @NotNull List<Coordinate> path
+    ) {
         if (!maze.isValidLocation(start) || maze.isWall(start) || isExplored(start)) {
             return false;
         }
@@ -27,7 +33,6 @@ public class DFSSolver extends Solver {
         if (start.equals(end)) {
             return true;
         }
-
 
         for (int[] direction : DIRECTIONS) {
             Coordinate currentCoordinate = start.getNextCoordinate(direction[0], direction[1]);

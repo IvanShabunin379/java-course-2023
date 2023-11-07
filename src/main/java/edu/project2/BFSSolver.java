@@ -1,18 +1,19 @@
 package edu.project2;
 
+import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 public class BFSSolver extends Solver {
     @Override
-    public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
-        LinkedList<Coordinate> nextToVisit = new LinkedList<>();
+    public List<Coordinate> solve(@NotNull Maze maze, @NotNull Coordinate start, @NotNull Coordinate end) {
         visited = new boolean[maze.getHeight()][maze.getWidth()];
 
+        LinkedList<Coordinate> nextToVisit = new LinkedList<>();
         nextToVisit.add(start);
 
         Map<Coordinate, Coordinate> parentMap = new HashMap<>();
@@ -50,7 +51,11 @@ public class BFSSolver extends Solver {
         return Collections.emptyList();
     }
 
-    private List<Coordinate> backtrackPath(Coordinate start, Coordinate end, Map<Coordinate, Coordinate> parentMap) {
+    private @NotNull List<Coordinate> backtrackPath(
+        @NotNull Coordinate start,
+        @NotNull Coordinate end,
+        @NotNull Map<Coordinate, Coordinate> parentMap
+    ) {
         List<Coordinate> path = new ArrayList<>();
         Coordinate current = end;
 

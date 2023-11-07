@@ -1,5 +1,6 @@
 package edu.project2;
 
+import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public class MazeRenderer implements Renderer {
@@ -9,7 +10,7 @@ public class MazeRenderer implements Renderer {
     }
 
     @Override
-    public String render(Maze maze, List<Coordinate> path) {
+    public String render(@NotNull Maze maze, List<Coordinate> path) {
         int height = maze.getHeight();
         int width = maze.getWidth();
         Cell[][] grid = maze.getGrid();
@@ -35,4 +36,3 @@ public class MazeRenderer implements Renderer {
         return result.toString();
     }
 }
-

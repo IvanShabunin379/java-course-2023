@@ -1,20 +1,21 @@
 package edu.project2;
 
+import org.jetbrains.annotations.NotNull;
 import java.util.List;
 
 public abstract class Solver {
-    int[][] DIRECTIONS
-        = { { 0, 1 }, { 1, 0 }, { 0, -1 }, { -1, 0 } };
+    static final int[][] DIRECTIONS
+        = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
     boolean[][] visited;
 
     public abstract List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end);
 
-    void setVisited(Coordinate coordinate) {
+    void setVisited(@NotNull Coordinate coordinate) {
         this.visited[coordinate.row()][coordinate.col()] = true;
     }
 
-    boolean isExplored(Coordinate coordinate) {
+    boolean isExplored(@NotNull Coordinate coordinate) {
         return visited[coordinate.row()][coordinate.col()];
     }
 }

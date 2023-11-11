@@ -28,6 +28,7 @@ public final class Task8 {
         return true;
     }
 
+    @SuppressWarnings({"MagicNumber", "ReturnCount", "CyclomaticComplexity"})
     private static boolean checkKnightHorizontal(int[][] board, int horizontal) {
         int indHor = horizontal - 1;
 

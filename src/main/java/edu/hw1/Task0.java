@@ -9,6 +9,7 @@ public final class Task0 {
     private Task0() {
     }
 
+    @SuppressWarnings("UncommentedMain")
     public static void main(String[] args) {
         LOGGER.info("Привет, мир!");
     }

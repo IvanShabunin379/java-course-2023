@@ -1,6 +1,5 @@
 package edu.hw4;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -10,6 +9,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
+import org.jetbrains.annotations.NotNull;
 
 public final class AnimalListAnalyzer {
     private AnimalListAnalyzer() {
@@ -113,6 +113,7 @@ public final class AnimalListAnalyzer {
 
     // Задача 11.
     // Список животных, которые могут укусить (bites == null или true) и рост которых превышает 100 см -> List<Animal>
+    @SuppressWarnings("MagicNumber")
     public static List<Animal> findTallAnimalsWhoCanBites(@NotNull List<Animal> animals) {
         return animals.stream()
             .filter(animal -> animal.bites() && animal.height() > 100)

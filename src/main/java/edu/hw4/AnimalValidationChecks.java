@@ -4,6 +4,7 @@ public final class AnimalValidationChecks {
     private AnimalValidationChecks() {
     }
 
+    @SuppressWarnings("MultipleStringLiterals")
     public static ValidationError checkName(String name) {
         if (name == null || name.isEmpty()) {
             return new ValidationError("name", "The animal has null/empty name.");
@@ -21,6 +22,7 @@ public final class AnimalValidationChecks {
         return (sex != null) ? null : new ValidationError("sex", "The animal has null sex.");
     }
 
+    @SuppressWarnings("MagicNumber")
     public static ValidationError checkAge(Animal.Type type, int age) {
         int maxValidAge = switch (type) {
             case null -> 100;
@@ -34,6 +36,7 @@ public final class AnimalValidationChecks {
         return (age >= 0 && age <= maxValidAge) ? null : new ValidationError("age", "The animal has invalid age.");
     }
 
+    @SuppressWarnings("MagicNumber")
     public static ValidationError checkHeight(Animal.Type type, int height) {
         int maxValidHeight = switch (type) {
             case null -> 2000;
@@ -48,6 +51,7 @@ public final class AnimalValidationChecks {
             : new ValidationError("height", "The animal has invalid height.");
     }
 
+    @SuppressWarnings("MagicNumber")
     public static ValidationError checkWeight(Animal.Type type, double weight) {
         int maxValidWeight = switch (type) {
             case null -> 2500;

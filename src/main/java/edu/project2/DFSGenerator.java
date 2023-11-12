@@ -10,6 +10,7 @@ public class DFSGenerator implements Generator {
         return maze;
     }
 
+    @SuppressWarnings("MagicNumber")
     private void generateMaze(@NotNull Maze maze, @NotNull Coordinate coordinate) {
         maze.setCell(coordinate, Cell.Type.PASSAGE);
 

@@ -1,6 +1,5 @@
 package edu.project2;
 
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public record Coordinate(int row, int col) {

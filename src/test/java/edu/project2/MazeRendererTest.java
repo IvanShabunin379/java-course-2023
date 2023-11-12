@@ -34,7 +34,7 @@ public class MazeRendererTest {
     public void testRenderWithPath() {
         Renderer renderer = new MazeRenderer();
 
-        List<Coordinate> path = new ArrayList<>(){{
+        List<Coordinate> path = new ArrayList<>() {{
             add(new Coordinate(0, 0));
             add(new Coordinate(0, 1));
             add(new Coordinate(0, 2));

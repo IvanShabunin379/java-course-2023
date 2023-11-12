@@ -29,7 +29,7 @@ public class DFSSolverTest {
         Solver dfsSolver = new DFSSolver();
 
         List<Coordinate> resultPath = dfsSolver.solve(maze, new Coordinate(0, 0), new Coordinate(4, 0));
-        List<Coordinate> expectedPath = new ArrayList<>(){{
+        List<Coordinate> expectedPath = new ArrayList<>() {{
             add(new Coordinate(0, 0));
             add(new Coordinate(1, 0));
             add(new Coordinate(2, 0));
@@ -62,7 +62,7 @@ public class DFSSolverTest {
         Solver dfsSolver = new DFSSolver();
 
         List<Coordinate> resultPath = dfsSolver.solve(maze, new Coordinate(0, 0), new Coordinate(4, 4));
-        List<Coordinate> expectedPath = new ArrayList<>(){{
+        List<Coordinate> expectedPath = new ArrayList<>() {{
             add(new Coordinate(0, 0));
             add(new Coordinate(1, 0));
             add(new Coordinate(2, 0));

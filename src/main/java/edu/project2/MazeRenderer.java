@@ -1,7 +1,7 @@
 package edu.project2;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class MazeRenderer implements Renderer {
     @Override

@@ -1,8 +1,8 @@
 package edu.project2;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class PrimGenerator implements Generator {
     @Override
@@ -45,6 +45,7 @@ public class PrimGenerator implements Generator {
         }
     }
 
+    @SuppressWarnings("MagicNumber")
     private List<Coordinate> getNeighbors(@NotNull Coordinate current, @NotNull Maze maze) {
         int[][] directions = {{0, 2}, {0, -2}, {2, 0}, {-2, 0}};
         List<Coordinate> neighbors = new ArrayList<>();

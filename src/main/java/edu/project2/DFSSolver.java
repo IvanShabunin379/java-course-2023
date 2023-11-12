@@ -1,9 +1,9 @@
 package edu.project2;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public class DFSSolver extends Solver {
     @Override

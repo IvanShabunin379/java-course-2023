@@ -3,9 +3,7 @@ package edu.project2;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class DFSGeneratorTest {
     @Test
@@ -28,7 +26,8 @@ public class DFSGeneratorTest {
             for (int j = 0; j < maze.getWidth(); ++j) {
                 if (maze.getGrid()[i][j].type().equals(Cell.Type.PASSAGE)) {
                     ++countPassages;
-                };
+                }
+                ;
             }
         }
 
@@ -45,7 +44,8 @@ public class DFSGeneratorTest {
             for (int j = 0; j < maze.getWidth(); ++j) {
                 if (maze.getGrid()[i][j].type().equals(Cell.Type.WALL)) {
                     ++countWalls;
-                };
+                }
+                ;
             }
         }
 

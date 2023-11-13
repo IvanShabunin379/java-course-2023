@@ -18,7 +18,7 @@ public final class Task8 {
         return str.matches("^(1*01*01*01*)*$");
     }
 
-    public static boolean isNot11Or111(@NotNull String str) {
+    public static boolean isNot11AndNot111(@NotNull String str) {
         return str.matches("^(?!11$|111$)[01]*$");
     }
 

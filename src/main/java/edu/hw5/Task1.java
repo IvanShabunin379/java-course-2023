@@ -1,11 +1,11 @@
 package edu.hw5;
 
-import org.jetbrains.annotations.NotNull;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public final class Task1 {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm");
@@ -31,7 +31,8 @@ public final class Task1 {
                 throw new IllegalArgumentException(INVALID_INPUT_STRING_MSG);
             }
 
-            LocalDateTime sessionStart, sessionEnd;
+            LocalDateTime sessionStart;
+            LocalDateTime sessionEnd;
             try {
                 sessionStart = LocalDateTime.parse(timeStamps[0], FORMATTER);
                 sessionEnd = LocalDateTime.parse(timeStamps[1], FORMATTER);

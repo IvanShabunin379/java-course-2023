@@ -1,9 +1,9 @@
-package edu.hw5;
+package edu.hw5.task4;
 
 import org.jetbrains.annotations.NotNull;
 
-public final class Task4 {
-    private Task4() {
+public final class PasswordValidator {
+    private PasswordValidator() {
     }
 
     public static boolean containsSpecialCharacter(@NotNull String password) {

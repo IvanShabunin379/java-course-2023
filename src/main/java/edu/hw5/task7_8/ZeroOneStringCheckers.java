@@ -1,10 +1,26 @@
-package edu.hw5;
+package edu.hw5.task7_8;
 
 import org.jetbrains.annotations.NotNull;
 
-public final class Task8 {
-    private Task8() {
+public final class ZeroOneStringCheckers {
+    private ZeroOneStringCheckers() {
     }
+
+    // -------- Задание 7. --------
+
+    public static boolean containsAtLeastThreeCharsAndThirdCharIsZero(@NotNull String str) {
+        return str.matches("^[01]{2}0[01]*$");
+    }
+
+    public static boolean startsAndEndsWithSameChar(@NotNull String str) {
+        return str.matches("^([01])([01]*\\1$)?");
+    }
+
+    public static boolean isNoShorterThanOneAndNotLongerThanThree(@NotNull String str) {
+        return str.matches("^[01]{1,3}$");
+    }
+
+    // ------- Задание 8. --------
 
     public static boolean hasOddLength(@NotNull String str) {
         return str.matches("^[01]([01]{2})*$");

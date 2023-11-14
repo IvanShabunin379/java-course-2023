@@ -1,4 +1,4 @@
-package edu.hw5;
+package edu.hw5.task2;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
-public final class Task2 {
+public final class FridayThe13Finder {
     private static final int NUMBER_OF_MONTH_IN_YEAR = 12;
 
     @SuppressWarnings("MagicNumber")
@@ -25,7 +25,7 @@ public final class Task2 {
         return currentThirteen;
     });
 
-    private Task2() {
+    private FridayThe13Finder() {
     }
 
     @SuppressWarnings("MagicNumber")

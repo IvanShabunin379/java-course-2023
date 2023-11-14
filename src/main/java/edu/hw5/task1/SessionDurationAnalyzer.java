@@ -1,4 +1,4 @@
-package edu.hw5;
+package edu.hw5.task1;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -7,7 +7,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import org.jetbrains.annotations.NotNull;
 
-public final class Task1 {
+public final class SessionDurationAnalyzer {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd, HH:mm");
 
     private static final String INVALID_INPUT_STRING_MSG = "One or more input strings are invalid.";
@@ -15,7 +15,7 @@ public final class Task1 {
     private static final String END_DATE_IS_BEFORE_START_DATE_MSG =
         "One or more sessions have end date is before start date.";
 
-    private Task1() {
+    private SessionDurationAnalyzer() {
     }
 
     public static Duration calculateAverageSessionDuration(@NotNull List<String> sessions) {

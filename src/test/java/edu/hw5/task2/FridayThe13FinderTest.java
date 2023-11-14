@@ -1,15 +1,14 @@
-package edu.hw5;
+package edu.hw5.task2;
 
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Task2Test {
+public class FridayThe13FinderTest {
     @Test
     public void testFindALlFridaysThe13InYear() {
-        List<LocalDate> result = Task2.findALlFridaysThe13InYear(1925);
+        List<LocalDate> result = FridayThe13Finder.findALlFridaysThe13InYear(1925);
         List<LocalDate> expected = List.of(
             LocalDate.of(1925, 2, 13),
             LocalDate.of(1925, 3, 13),
@@ -17,7 +16,7 @@ public class Task2Test {
         );
         assertThat(result).isEqualTo(expected);
 
-        result = Task2.findALlFridaysThe13InYear(2024);
+        result = FridayThe13Finder.findALlFridaysThe13InYear(2024);
         expected = List.of(
             LocalDate.of(2024, 9, 13),
             LocalDate.of(2024, 12, 13)
@@ -27,11 +26,11 @@ public class Task2Test {
 
     @Test
     public void testFindNextFridayThe13() {
-        LocalDate result = Task2.findNextFridayThe13(LocalDate.of(1925, 2, 13));
+        LocalDate result = FridayThe13Finder.findNextFridayThe13(LocalDate.of(1925, 2, 13));
         LocalDate expected = LocalDate.of(1925, 3, 13);
         assertThat(result).isEqualTo(expected);
 
-        result = Task2.findNextFridayThe13(LocalDate.of(2023, 11, 13));
+        result = FridayThe13Finder.findNextFridayThe13(LocalDate.of(2023, 11, 13));
         expected = LocalDate.of(2024, 9, 13);
         assertThat(result).isEqualTo(expected);
     }

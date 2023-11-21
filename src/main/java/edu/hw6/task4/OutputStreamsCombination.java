@@ -22,10 +22,10 @@ public final class OutputStreamsCombination {
              var bufferedOutputStream = new BufferedOutputStream(checkedOutputStream);
              var outputStreamWriter = new OutputStreamWriter(bufferedOutputStream);
              var printWriter = new PrintWriter(outputStreamWriter);
-             ) {
-                printWriter.println(QUOTE);
+        ) {
+            printWriter.println(QUOTE);
         } catch (IOException e) {
-            throw new RuntimeException("File already exists.");
+            throw new RuntimeException(e);
         }
     }
 }

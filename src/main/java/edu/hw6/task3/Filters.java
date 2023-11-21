@@ -10,9 +10,9 @@ public final class Filters {
     private Filters() {
     }
 
-    public static Filter regularFile = Files::isRegularFile;
-    public static Filter readable = Files::isReadable;
-    public static Filter writable = Files::isWritable;
+    public static final Filter REGULAR_FILE = Files::isRegularFile;
+    public static final Filter READABLE = Files::isReadable;
+    public static final Filter WRITABLE = Files::isWritable;
 
     public static Filter hasSize(long size) {
         return path -> Files.size(path) == size;

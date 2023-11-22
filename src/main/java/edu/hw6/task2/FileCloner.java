@@ -16,10 +16,10 @@ public final class FileCloner {
         }
 
         String[] nameAndExtension = filePath.getFileName().toString().split("\\.");
-        String InfoAboutCopyPart = "( - копия( \\([2-9]|[1-9][0-9]+\\))?)";
-        String name = nameAndExtension[0].split(InfoAboutCopyPart)[0];
+        String infoAboutCopyPart = "( - копия( \\([2-9]|[1-9][0-9]+\\))?)";
+        String name = nameAndExtension[0].split(infoAboutCopyPart)[0];
         String extension = (nameAndExtension.length == 2) ? nameAndExtension[1] : "";
-        String fileCopyPattern = String.format("^%s%s?%s$", name, InfoAboutCopyPart, extension);
+        String fileCopyPattern = String.format("^%s%s?%s$", name, infoAboutCopyPart, extension);
 
         Path parentDirectory = filePath.getParent();
         try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(parentDirectory, fileCopyPattern)) {
@@ -39,7 +39,7 @@ public final class FileCloner {
 
             Files.copy(filePath, Paths.get(nameOfNewCopy.toString()));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage(), e);
         }
     }
 }

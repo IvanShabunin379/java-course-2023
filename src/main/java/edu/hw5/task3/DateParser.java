@@ -26,12 +26,9 @@ public class DateParser {
     }
 
     public Optional<LocalDate> parseDate(String string) {
-        for (DateParsingStrategy strategy : strategies) {
-            Optional<LocalDate> date = strategy.tryParse(string);
-            if (date.isPresent()) {
-                return date;
-            }
-        }
-        return Optional.empty();
+        return strategies.stream()
+            .map(strategy -> strategy.tryParse(string))
+            .flatMap(Optional::stream)
+            .findFirst();
     }
 }

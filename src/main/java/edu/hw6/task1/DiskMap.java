@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -109,7 +110,8 @@ public class DiskMap implements Map<String, String> {
 
     @Override
     public void clear() {
-        cache.keySet().forEach(this::remove);
+        Set<String> keysToRemove = new HashSet<>(cache.keySet());
+        keysToRemove.forEach(this::remove);
     }
 
     @NotNull

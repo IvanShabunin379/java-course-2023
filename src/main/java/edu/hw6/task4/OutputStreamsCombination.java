@@ -11,7 +11,7 @@ import java.util.zip.CheckedOutputStream;
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
 public final class OutputStreamsCombination {
-    private static final String QUOTE = "Programming is learned by writing programs. ― Brian Kernighan";
+    public static final String QUOTE = "Programming is learned by writing programs. ― Brian Kernighan";
 
     private OutputStreamsCombination() {
     }
@@ -21,7 +21,7 @@ public final class OutputStreamsCombination {
              var checkedOutputStream = new CheckedOutputStream(fileOutputStream, new Adler32());
              var bufferedOutputStream = new BufferedOutputStream(checkedOutputStream);
              var outputStreamWriter = new OutputStreamWriter(bufferedOutputStream);
-             var printWriter = new PrintWriter(outputStreamWriter);
+             var printWriter = new PrintWriter(outputStreamWriter)
         ) {
             printWriter.println(QUOTE);
         } catch (IOException e) {

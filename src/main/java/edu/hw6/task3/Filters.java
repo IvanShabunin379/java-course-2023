@@ -5,6 +5,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.regex.Pattern;
+import org.jetbrains.annotations.NotNull;
 
 public final class Filters {
     private Filters() {
@@ -26,15 +27,15 @@ public final class Filters {
         return path -> Files.size(path) < size;
     }
 
-    public static Filter hasExtension(String extension) {
+    public static Filter hasExtension(@NotNull String extension) {
         return path -> path.getFileName().toString().endsWith("." + extension);
     }
 
-    public static Filter regexContains(String regex) {
+    public static Filter regexContains(@NotNull String regex) {
         return path -> Pattern.compile(regex).matcher(path.getFileName().toString()).find();
     }
 
-    public static Filter globMatches(String glob) {
+    public static Filter globMatches(@NotNull String glob) {
         return path -> FileSystems.getDefault().getPathMatcher("glob:" + glob).matches(path.getFileName());
     }
 

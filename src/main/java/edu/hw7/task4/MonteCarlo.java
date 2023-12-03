@@ -1,6 +1,7 @@
 package edu.hw7.task4;
 
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
@@ -37,13 +38,16 @@ public final class MonteCarlo {
             LongAdder totalCircleCount = new LongAdder();
             long nIterationsPerThread = Math.ceilDiv(numberOfIterations, numberOfThreads);
 
+            var futures = new CompletableFuture[numberOfThreads];
             for (int i = 0; i < numberOfThreads; ++i) {
-                executorService.submit(() -> {
+                CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
                     long threadCircleCount = calculateCircleCount(nIterationsPerThread);
                     totalCircleCount.add(threadCircleCount);
-                });
+                }, executorService);
+                futures[i] = future;
             }
 
+            CompletableFuture.allOf(futures).join();
             executorService.shutdown();
 
             return (double) (RATIO_OF_SQUARE_AND_CIRCLE_AREAS_DIVIDED_BY_PI

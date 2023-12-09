@@ -18,6 +18,7 @@ public final class FixedThreadPool implements ThreadPool {
 
     private FixedThreadPool(int numberOfThreads) {
         taskQueue = new LinkedList<>();
+
         workerThreads = Stream.generate(() -> new Thread(() -> {
             try {
                 this.work();
@@ -67,6 +68,7 @@ public final class FixedThreadPool implements ThreadPool {
         } finally {
             queueLock.unlock();
         }
+
         workerThreads.forEach(Thread::start);
     }
 
@@ -90,6 +92,7 @@ public final class FixedThreadPool implements ThreadPool {
         } finally {
             queueLock.unlock();
         }
+
         for (var thread : workerThreads) {
             thread.join();
         }

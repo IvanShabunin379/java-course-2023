@@ -4,9 +4,15 @@ import edu.project4.geometry.Point;
 import java.awt.Color;
 
 public class AffineTransformation implements Transformation {
-    private final double a, b, c, d, e, f;
+    private final double a;
+    private final double b;
+    private final double c;
+    private final double d;
+    private final double e;
+    private final double f;
 
     private Color color = Color.BLACK;
+
     public AffineTransformation(double a, double b, double c, double d, double e, double f) {
         this.a = a;
         this.b = b;
@@ -16,11 +22,11 @@ public class AffineTransformation implements Transformation {
         this.f = f;
     }
 
-    public void setColor(Color color){
+    public void setColor(Color color) {
         this.color = color;
     }
 
-    public Color getColor(){
+    public Color getColor() {
         return color;
     }
 

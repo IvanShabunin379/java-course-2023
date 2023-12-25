@@ -1,7 +1,5 @@
 package edu.hw9.task1;
 
-import edu.hw9.task1.Statistics;
-import edu.hw9.task1.StatsCollector;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;

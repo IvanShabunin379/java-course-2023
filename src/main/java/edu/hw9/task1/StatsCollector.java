@@ -42,6 +42,7 @@ public class StatsCollector {
         return Collections.unmodifiableMap(metrics);
     }
 
+    @SuppressWarnings("MagicNumber")
     public void closeCollector() throws InterruptedException {
         executorService.awaitTermination(10, TimeUnit.MILLISECONDS);
         executorService.shutdown();

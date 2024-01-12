@@ -1,62 +1,49 @@
 package edu.hw9.task1;
 
-import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class StatsCollector {
-    private final ConcurrentMap<String, List<Double>> collector;
+    private final ConcurrentMap<String, Statistics> metrics;
+
+    private final ExecutorService executorService;
 
     public StatsCollector() {
-        collector = new ConcurrentHashMap<>();
-    }
-
-    public int getMetricsCount() {
-        return collector.size();
+        metrics = new ConcurrentHashMap<>();
+        executorService = Executors.newFixedThreadPool(
+            Runtime.getRuntime().availableProcessors());
     }
 
     public void push(String metricName, double[] data) {
-        List<Double> values = new ArrayList<>(data.length);
-        for (double value : data) {
-            values.add(value);
-        }
-        collector.put(metricName, values);
-    }
+        executorService.execute(() -> {
+            synchronized (metrics) {
+                if (!metricName.isEmpty()) {
+                    metrics.compute(metricName, (key, oldValue) -> {
+                        if (oldValue == null) {
+                            return new Statistics(data);
+                        } else {
+                            //synchronized (metrics) {
+                            return oldValue.updateStatistics(data);
+                            //}
+                        }
 
-    private Statistics getStatistics(String metricName) {
-        List<Double> metric = collector.get(metricName);
-
-        if (metric.isEmpty()) {
-            return new Statistics(0, 0, 0, 0);
-        }
-
-        DoubleSummaryStatistics stats = metric.stream()
-            .mapToDouble(Double::doubleValue)
-            .summaryStatistics();
-
-        return new Statistics(stats.getSum(), stats.getAverage(), stats.getMax(), stats.getMin());
+                    });
+                }
+            }
+        });
     }
 
     public Map<String, Statistics> stats() {
-        Map<String, Statistics> statisticsMap = new HashMap<>();
-        try (ExecutorService executorService = Executors.newFixedThreadPool(
-            Runtime.getRuntime().availableProcessors())) {
-            for (var metricName : collector.keySet()) {
-                executorService.execute(() -> {
-                    Statistics statistics = getStatistics(metricName);
-                    synchronized (statisticsMap) {
-                        statisticsMap.put(metricName, statistics);
-                    }
-                });
-            }
-            executorService.shutdown();
-        }
-        return statisticsMap;
+        return Collections.unmodifiableMap(metrics);
+    }
+
+    public void closeCollector() throws InterruptedException {
+        executorService.awaitTermination(10, TimeUnit.MILLISECONDS);
+        executorService.shutdown();
     }
 }

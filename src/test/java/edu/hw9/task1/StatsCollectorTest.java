@@ -1,9 +1,6 @@
 package edu.hw9.task1;
 
 import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
@@ -18,43 +15,52 @@ public class StatsCollectorTest {
         collector = new StatsCollector();
     }
 
-    @RepeatedTest(TEST_REPETITIONS)
-    public void collectorShouldCorrectlyCollectInfo() {
-        int count = 10;
-
-        try (ExecutorService executorService = Executors.newFixedThreadPool(12)) {
-            for (int i = 0; i < count; i++) {
-                int metric_Number = i;
-                executorService.execute(() -> collector.push(
-                    "metric_name" + metric_Number,
-                    new double[] {0.1, 0.05, 1.4, 5.1, 0.3}
-                ));
-            }
-            executorService.shutdown();
+    @RepeatedTest(100)
+    public void collectorShouldCorrectlyCollectInfo() throws InterruptedException {
+        for (int i = 0; i < TEST_REPETITIONS; i++) {
+            collector.push(
+                "metric_name" + i,
+                new double[] {0.1, 0.05, 1.4, 5.1, 0.3}
+            );
         }
-
-        Assertions.assertThat(collector.getMetricsCount()).isEqualTo(count);
+        collector.closeCollector();
+        Assertions.assertThat(collector.stats().size()).isEqualTo(TEST_REPETITIONS);
     }
 
-    @RepeatedTest(TEST_REPETITIONS)
-    public void collectorShouldCorrectlyGetStats() {
-        collector.push(
-            "metric_name",
-            new double[] {1, 2, 3, 4, 5}
-        );
-        Map<String, Statistics> stat = collector.stats();
-        Assertions.assertThat(stat).isEqualTo(new HashMap<>() {{
-            put("metric_name", new Statistics(15, 3.0, 5, 1));
-        }});
+    @RepeatedTest(100)
+    public void collectorShouldCorrectlyGetStats() throws InterruptedException {
 
         collector.push(
-            "metric_name2",
-            new double[] {0, 0, 0, 0, 0}
+            "metric_name",
+            new double[] {0.4, 0.9, 1.2}
         );
-        stat = collector.stats();
-        Assertions.assertThat(stat).containsExactlyInAnyOrderEntriesOf(new HashMap<>() {{
-            put("metric_name", new Statistics(15, 3.0, 5, 1));
-            put("metric_name2", new Statistics(0, 0, 0, 0));
-        }});
+        collector.push(
+            "metric_name",
+            new double[] {0.1, 0.05}
+        );
+        collector.push(
+            "metric_name",
+            new double[] {3.35}
+        );
+        collector.push(
+            "metric_name2",
+            new double[] {0.1, 0.05, 1.4, 5.1, 0.3}
+        );
+        collector.push(
+            "metric_name2",
+            new double[] {0.4, 0.65, 0}
+        );
+        collector.push(
+            "metric_name3",
+            new double[] {2}
+        );
+        collector.closeCollector();
+        Assertions.assertThat(collector.stats()).containsExactlyInAnyOrderEntriesOf(new HashMap<>() {
+            {
+                put("metric_name", new Statistics(6, 1, 3.35, 0.05, 6));
+                put("metric_name2", new Statistics(8, 1,5.1,0, 8));
+                put("metric_name3", new Statistics(2,2,2,2,1));
+            }});
+        Assertions.assertThat(collector.stats().size()).isEqualTo(3);
     }
 }

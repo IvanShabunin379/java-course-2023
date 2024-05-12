@@ -1,13 +1,11 @@
 package edu.hw1;
 
-import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class Task8Test {
-
     @Test
     public void knightBoardOnWhichNoKnightCanCaptureAnotherKnightShouldReturnTrue() {
         assertTrue(Task8.knightBoardCapture(new int[][] {

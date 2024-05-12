@@ -1,15 +1,15 @@
 package edu.hw6.task3;
 
 import edu.hw6.TestWithTemporaryDirectory;
-import static org.assertj.core.api.Assertions.assertThat;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FiltersTest extends TestWithTemporaryDirectory {
     @BeforeAll
@@ -68,7 +68,12 @@ public class FiltersTest extends TestWithTemporaryDirectory {
     public void testLargerThanFilter() throws IOException {
         try (DirectoryStream<Path> paths = Files.newDirectoryStream(TEMP_DIR_PATH, Filters.largerThan(10))) {
             List<String> pathsNames = getPathsNames(paths);
-            assertThat(pathsNames).containsExactlyInAnyOrder("500bytes.dat", "777bytes.dat", "1024bytes.dat");
+            assertThat(pathsNames).containsExactlyInAnyOrder(
+                "500bytes.dat",
+                "777bytes.dat",
+                "1024bytes.dat",
+                "not-file"
+            );
         }
     }
 
@@ -84,8 +89,7 @@ public class FiltersTest extends TestWithTemporaryDirectory {
                 "text1.txt",
                 "text2.txt",
                 "dont_readme.md",
-                "pseudo.png",
-                "not-file"
+                "pseudo.png"
             );
         }
     }

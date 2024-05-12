@@ -1,12 +1,10 @@
 package edu.hw1;
 
+import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
-import org.junit.jupiter.api.Test;
-
 public class Task7Test {
-
     @Test
     public void positiveNumberShouldReturnThisNumberWithRotatedLeftBits() {
         assertThat(Task7.rotateRight(8, 1)).isEqualTo(4);
